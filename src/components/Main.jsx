@@ -9,6 +9,16 @@ const initFormData = {
 };
 
 export default function Main() {
+  const [formData, setFormData] = useState(initFormData);
+
+  const formChanges = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   return (
     <main>
       <section className="sec-main">
@@ -18,15 +28,32 @@ export default function Main() {
             <form>
               <div>
                 <label htmlFor="author-input">Name</label>
-                <input type="text" id="author-input" />
+                <input
+                  value={formData.author}
+                  onChange={formChanges}
+                  name="author"
+                  type="text"
+                  id="author-input"
+                />
               </div>
               <div>
                 <label htmlFor="title-input">Title</label>
-                <input type="text" id="title-input" />
+                <input
+                  name="title"
+                  onChange={formChanges}
+                  value={formData.title}
+                  type="text"
+                  id="title-input"
+                />
               </div>
               <div>
                 <label htmlFor="area-input">Body</label>
-                <textarea id="area-input" />
+                <textarea
+                  id="area-input"
+                  name="body"
+                  value={formData.body}
+                  onChange={formChanges}
+                />
               </div>
               <div>
                 <label htmlFor="radio-input">Visibility</label>
