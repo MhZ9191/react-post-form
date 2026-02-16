@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
+const urlPostAPI = "https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts";
 const initFormData = {
   author: "",
   title: "",
@@ -21,6 +22,13 @@ export default function Main() {
 
   const formSubmit = (e) => {
     e.preventDefault();
+    if (!formData.author || !formData.title || !formData.body) {
+      alert("Compila tutti i campi");
+    } else {
+      axios.post(urlPostAPI, formData).then(() => {
+        alert("Send succesfully!");
+      });
+    }
   };
 
   return (
