@@ -25,7 +25,8 @@ export default function Main() {
     if (!formData.author || !formData.title || !formData.body) {
       alert("Compila tutti i campi");
     } else {
-      axios.post(urlPostAPI, formData).then(() => {
+      axios.post(urlPostAPI, formData).then((res) => {
+        console.log(res.data);
         alert("Send succesfully!");
       });
     }
@@ -37,7 +38,7 @@ export default function Main() {
         <div className="div-main">
           <fieldset className="field-main">
             <legend>Hello Blog</legend>
-            <form onSubmit={formSubmit}>
+            <form onSubmit={formSubmit} className="form-main">
               <div>
                 <label htmlFor="author-input">Name</label>
                 <input
@@ -65,30 +66,38 @@ export default function Main() {
                   name="body"
                   value={formData.body}
                   onChange={formChanges}
+                  placeholder="Type here"
                 />
               </div>
-              <div>
-                <label htmlFor="radio-input">Visibility</label>
-                <input
-                  onChange={formChanges}
-                  type="radio"
-                  name="public"
-                  id="public-radio"
-                  value="public"
-                  checked={formData.public === "public"}
-                />
-                <label htmlFor="public-radio">Public</label>
-                <input
-                  type="radio"
-                  name="public"
-                  id="private-radio"
-                  value="private"
-                  onChange={formChanges}
-                  checked={formData.public === "private"}
-                />
-                <label htmlFor="private-radio">Private</label>
+              <div className="div-radio">
+                <div>
+                  <input
+                    onChange={formChanges}
+                    type="radio"
+                    name="public"
+                    id="public-radio"
+                    value="public"
+                    checked={formData.public === "public"}
+                    className="radio-in"
+                  />
+                  <label htmlFor="public-radio">Public</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="public"
+                    id="private-radio"
+                    value="private"
+                    onChange={formChanges}
+                    checked={formData.public === "private"}
+                    className="radio-in"
+                  />
+                  <label htmlFor="private-radio">Private</label>
+                </div>
               </div>
-              <button>SEND</button>
+              <div className="btn">
+                <button>SEND</button>
+              </div>
             </form>
           </fieldset>
         </div>
